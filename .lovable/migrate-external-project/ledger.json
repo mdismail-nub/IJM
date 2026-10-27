@@ -1,0 +1,47 @@
+{
+  "source": "code archive (utilitydock-productivity-hub-main.zip)",
+  "capabilities": [
+    {
+      "capability": "frontend app (home + 5 category routes)",
+      "source": "exported TanStack Start app",
+      "outcome": "migrate",
+      "status": "verified",
+      "next_action": null
+    },
+    {
+      "capability": "database",
+      "source": "none detected in code or config",
+      "outcome": "none",
+      "status": "not-applicable",
+      "next_action": null
+    },
+    {
+      "capability": "auth identities",
+      "source": "none detected (no account required, per app copy)",
+      "outcome": "none",
+      "status": "not-applicable",
+      "next_action": null
+    },
+    {
+      "capability": "records/user data",
+      "source": "no record export; app stores nothing server-side",
+      "outcome": "none",
+      "status": "not-applicable",
+      "next_action": null
+    },
+    {
+      "capability": "external providers (Stripe, email, storage, analytics)",
+      "source": "none detected",
+      "outcome": "none",
+      "status": "not-applicable",
+      "next_action": null
+    },
+    {
+      "capability": "public endpoints/webhooks/schedules",
+      "source": "none detected",
+      "outcome": "none",
+      "status": "not-applicable",
+      "next_action": null
+    }
+  ]
+}
