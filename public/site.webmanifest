@@ -1,0 +1,29 @@
+{
+  "name": "IJM — All-in-One Utility Dock",
+  "short_name": "IJM",
+  "description": "Privacy-first browser utility dock for PDFs, images, data, developers, business, and students.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5F5F7",
+  "theme_color": "#141418",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

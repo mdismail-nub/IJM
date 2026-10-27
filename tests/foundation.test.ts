@@ -79,3 +79,42 @@ test("validateFile enforces non-empty, max size, and allowed extensions", () => 
   );
   assert.equal(validRes.valid, true);
 });
+
+test("favicon suite and webmanifest exist with valid binary headers and brand metadata", async () => {
+  const fs = await import("node:fs");
+  const svgContent = fs.readFileSync("public/favicon.svg", "utf8");
+  assert.ok(svgContent.includes("<svg"));
+  assert.ok(svgContent.includes("#D6F538"));
+
+  const pngFiles = [
+    "public/favicon-16x16.png",
+    "public/favicon-32x32.png",
+    "public/apple-touch-icon.png",
+    "public/icon-192.png",
+    "public/icon-512.png",
+  ];
+  for (const file of pngFiles) {
+    const buf = fs.readFileSync(file);
+    assert.ok(buf.byteLength > 200, `${file} should be non-empty`);
+    // PNG magic signature: 89 50 4E 47 0D 0A 1A 0A
+    assert.equal(buf[0], 0x89);
+    assert.equal(buf[1], 0x50);
+    assert.equal(buf[2], 0x4e);
+    assert.equal(buf[3], 0x47);
+  }
+
+  const icoBuf = fs.readFileSync("public/favicon.ico");
+  assert.ok(icoBuf.byteLength > 1000);
+  assert.equal(icoBuf.readUInt16LE(0), 0); // Reserved = 0
+  assert.equal(icoBuf.readUInt16LE(2), 1); // Type = 1 (ICO)
+  assert.equal(icoBuf.readUInt16LE(4), 3); // 3 embedded resolutions (16, 32, 48)
+
+  const manifest = JSON.parse(fs.readFileSync("public/site.webmanifest", "utf8")) as {
+    short_name: string;
+    icons: { src: string }[];
+  };
+  assert.equal(manifest.short_name, "IJM");
+  assert.ok(manifest.icons.some((i) => i.src === "/favicon.svg"));
+  assert.ok(manifest.icons.some((i) => i.src === "/icon-512.png"));
+});
+

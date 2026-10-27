@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Outer rounded dock squircle in deep ink -->
+  <rect width="64" height="64" rx="16" fill="#141418"/>
+  <!-- Inner subtle lime frame -->
+  <rect x="3" y="3" width="58" height="58" rx="13.5" stroke="#D6F538" stroke-width="2" stroke-opacity="0.32"/>
+  <!-- Top stamp handle / lightning accent pill in electric lime -->
+  <rect x="20" y="10" width="24" height="6" rx="3" fill="#D6F538"/>
+  <path d="M27 16H37L39 22H25L27 16Z" fill="#D6F538" fill-opacity="0.85"/>
+  <!-- Stamp base plate -->
+  <rect x="11" y="22" width="42" height="5" rx="2.5" fill="#D6F538"/>
+  <!-- Bold geometric IJM monogram -->
+  <g fill="#FAFAFC">
+    <!-- I -->
+    <rect x="12" y="32" width="6" height="20" rx="1.5"/>
+    <!-- J -->
+    <path d="M27 32H33V45.5C33 49.366 30.0899 52.2 26.2 52.2C22.7 52.2 20.2 49.9 20.2 46.5V45H25.2V46.1C25.2 47.1 25.8 47.7 26.6 47.7C27.4 47.7 27.9 47.1 27.9 46V32H27Z"/>
+    <!-- M -->
+    <path d="M36 32H41.2L44.5 40.8L47.8 32H53V52H48.2V40.6L45.3 48.2H43.7L40.8 40.6V52H36V32Z" fill="#D6F538"/>
+  </g>
+</svg>
