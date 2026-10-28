@@ -10,16 +10,24 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as BusinessToolsRouteImport } from './routes/business-tools'
 import { Route as DataToolsRouteImport } from './routes/data-tools'
 import { Route as DeveloperToolsRouteImport } from './routes/developer-tools'
 import { Route as FileToolsRouteImport } from './routes/file-tools'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as StudentToolsRouteImport } from './routes/student-tools'
+import { Route as ToolsIndexRouteImport } from './routes/tools.index'
+import { Route as ToolsToolSlugRouteImport } from './routes/tools.$toolSlug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BusinessToolsRoute = BusinessToolsRouteImport.update({
@@ -52,73 +60,104 @@ const StudentToolsRoute = StudentToolsRouteImport.update({
   path: '/student-tools',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ToolsIndexRoute = ToolsIndexRouteImport.update({
+  id: '/tools/',
+  path: '/tools/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsToolSlugRoute = ToolsToolSlugRouteImport.update({
+  id: '/tools/$toolSlug',
+  path: '/tools/$toolSlug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/business-tools': typeof BusinessToolsRoute
   '/data-tools': typeof DataToolsRoute
   '/developer-tools': typeof DeveloperToolsRoute
   '/file-tools': typeof FileToolsRoute
   '/privacy': typeof PrivacyRoute
   '/student-tools': typeof StudentToolsRoute
+  '/tools/$toolSlug': typeof ToolsToolSlugRoute
+  '/tools/': typeof ToolsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/business-tools': typeof BusinessToolsRoute
   '/data-tools': typeof DataToolsRoute
   '/developer-tools': typeof DeveloperToolsRoute
   '/file-tools': typeof FileToolsRoute
   '/privacy': typeof PrivacyRoute
   '/student-tools': typeof StudentToolsRoute
+  '/tools/$toolSlug': typeof ToolsToolSlugRoute
+  '/tools': typeof ToolsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/business-tools': typeof BusinessToolsRoute
   '/data-tools': typeof DataToolsRoute
   '/developer-tools': typeof DeveloperToolsRoute
   '/file-tools': typeof FileToolsRoute
   '/privacy': typeof PrivacyRoute
   '/student-tools': typeof StudentToolsRoute
+  '/tools/$toolSlug': typeof ToolsToolSlugRoute
+  '/tools/': typeof ToolsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/business-tools'
     | '/data-tools'
     | '/developer-tools'
     | '/file-tools'
     | '/privacy'
     | '/student-tools'
+    | '/tools/$toolSlug'
+    | '/tools/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/business-tools'
     | '/data-tools'
     | '/developer-tools'
     | '/file-tools'
     | '/privacy'
     | '/student-tools'
+    | '/tools/$toolSlug'
+    | '/tools'
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/business-tools'
     | '/data-tools'
     | '/developer-tools'
     | '/file-tools'
     | '/privacy'
     | '/student-tools'
+    | '/tools/$toolSlug'
+    | '/tools/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   BusinessToolsRoute: typeof BusinessToolsRoute
   DataToolsRoute: typeof DataToolsRoute
   DeveloperToolsRoute: typeof DeveloperToolsRoute
   FileToolsRoute: typeof FileToolsRoute
   PrivacyRoute: typeof PrivacyRoute
   StudentToolsRoute: typeof StudentToolsRoute
+  ToolsToolSlugRoute: typeof ToolsToolSlugRoute
+  ToolsIndexRoute: typeof ToolsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -128,6 +167,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/business-tools': {
@@ -172,17 +218,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentToolsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tools/': {
+      id: '/tools/'
+      path: '/tools'
+      fullPath: '/tools/'
+      preLoaderRoute: typeof ToolsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/$toolSlug': {
+      id: '/tools/$toolSlug'
+      path: '/tools/$toolSlug'
+      fullPath: '/tools/$toolSlug'
+      preLoaderRoute: typeof ToolsToolSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   BusinessToolsRoute: BusinessToolsRoute,
   DataToolsRoute: DataToolsRoute,
   DeveloperToolsRoute: DeveloperToolsRoute,
   FileToolsRoute: FileToolsRoute,
   PrivacyRoute: PrivacyRoute,
   StudentToolsRoute: StudentToolsRoute,
+  ToolsToolSlugRoute: ToolsToolSlugRoute,
+  ToolsIndexRoute: ToolsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

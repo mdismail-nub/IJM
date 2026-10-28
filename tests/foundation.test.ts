@@ -117,4 +117,3 @@ test("favicon suite and webmanifest exist with valid binary headers and brand me
   assert.ok(manifest.icons.some((i) => i.src === "/favicon.svg"));
   assert.ok(manifest.icons.some((i) => i.src === "/icon-512.png"));
 });
-
